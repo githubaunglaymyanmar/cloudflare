@@ -18,7 +18,6 @@ git clone https://github.com/leelaracc5/forvless.git
 cd forvless
 sudo apt update
 sudo apt install -y nodejs npm
-cd northflank
 npm npm install
 node node app.js
 nohup node app.js > server.log 2>&1 &
