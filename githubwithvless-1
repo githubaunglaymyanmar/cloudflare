@@ -21,6 +21,7 @@ sudo apt install -y nodejs npm
 npm install
 #node app.js
 screen -m -d -S node node app.js 
+sleep 10s
 netstat -nltp
 
 sleep 1d
