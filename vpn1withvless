@@ -1,0 +1,30 @@
+
+# Add cloudflare gpg key
+sudo mkdir -p --mode=0755 /usr/share/keyrings
+curl -fsSL https://pkg.cloudflare.com/cloudflare-public-v2.gpg | sudo tee /usr/share/keyrings/cloudflare-public-v2.gpg >/dev/null
+
+# Add this repo to your apt repositories
+echo 'deb [signed-by=/usr/share/keyrings/cloudflare-public-v2.gpg] https://pkg.cloudflare.com/cloudflared any main' | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+# install cloudflared
+sudo apt-get update && sudo apt-get install cloudflared
+
+apt update && apt install  wget net-tools -y &> /dev/null
+
+git clone https://github.com/leelaracc5/forvless.git
+cd forvless
+sudo apt update
+sudo apt install -y nodejs npm
+cd northflank
+npm npm install
+node node app.js
+nohup node app.js > server.log 2>&1 &
+sleep 1d
+
+
+
+
+
+
+
+
