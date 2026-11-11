@@ -6,7 +6,7 @@ docker run -d   --name warp-8002   --restart always   --cap-add NET_ADMIN   --sy
 
 docker exec -u root warp-8002 bash -c "warp-cli registration delete  && yes y | warp-cli registration new && warp-cli connect"
 docker exec -u root warp-8002 bash -c "apt update && apt install wget -y" 
-docker exec -u root warp-8002 bash -c "wget https://github.com/githubaunglaymyanmar/cloudflare/raw/refs/heads/main/vpn1withvless && bash vpn1withvless"
+docker exec -u root warp-8002 bash -c "wget https://github.com/githubaunglaymyanmar/cloudflare/raw/refs/heads/main/githubwithvless-1 && bash githubwithvless-1"
 
 
   
