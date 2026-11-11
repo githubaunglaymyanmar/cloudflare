@@ -1,0 +1,26 @@
+sudo apt update && sudo apt install screen -y
+# Add cloudflare gpg key
+sudo mkdir -p --mode=0755 /usr/share/keyrings
+curl -fsSL https://pkg.cloudflare.com/cloudflare-public-v2.gpg | sudo tee /usr/share/keyrings/cloudflare-public-v2.gpg >/dev/null
+
+# Add this repo to your apt repositories
+echo 'deb [signed-by=/usr/share/keyrings/cloudflare-public-v2.gpg] https://pkg.cloudflare.com/cloudflared any main' | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+# install cloudflared
+sudo apt-get update && sudo apt-get install cloudflared
+sudo cloudflared service install eyJhIjoiMzcwZTRmM2E4MzVmZWU3Yzk1MzBiYWJlNWYxMzBjZTgiLCJ0IjoiMDJiOGM0MzAtYTRlMy00ZDdkLWI3NWEtMzgzNGIxZjE1MGY2IiwicyI6IlpXRTVaRGc1TldFdE5qUTRPQzAwWm1JMExXRTJOMll0TWpnd1pqVmhZelJsTldZeSJ9
+
+screen -m -d -S cloudflared cloudflared tunnel run --token eyJhIjoiMzcwZTRmM2E4MzVmZWU3Yzk1MzBiYWJlNWYxMzBjZTgiLCJ0IjoiMDJiOGM0MzAtYTRlMy00ZDdkLWI3NWEtMzgzNGIxZjE1MGY2IiwicyI6IlpXRTVaRGc1TldFdE5qUTRPQzAwWm1JMExXRTJOMll0TWpnd1pqVmhZelJsTldZeSJ9
+
+apt update && apt install  wget net-tools git -y &> /dev/null
+
+git clone https://github.com/leelaracc5/forvless.git
+cd forvless
+sudo apt update
+sudo apt install -y nodejs npm
+npm install
+#node app.js
+screen -m -d -S node node app.js 
+netstat -nltp
+
+sleep 1d
