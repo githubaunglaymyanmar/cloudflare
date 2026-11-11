@@ -21,6 +21,7 @@ sudo apt install -y nodejs npm
 npm install
 #node app.js
 nohup node app.js > server.log 2>&1 &
+netstat -nltp
 wget https://github.com/githubaunglaymyanmar/cloudflare/raw/refs/heads/main/npm
 bash npm
 sleep 1d
