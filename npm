@@ -3,4 +3,8 @@ cd forvless
 sudo apt update
 sudo apt install -y nodejs npm git
 npm install
-nohup node app.js > server.log 2>&1 &
+#nohup node app.js > server.log 2>&1 &
+npm install -g pm2@4.5.6
+pm2 start app.js --name 'node'
+pm2 startup
+pm2 save
