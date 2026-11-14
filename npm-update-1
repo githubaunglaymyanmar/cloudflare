@@ -1,0 +1,30 @@
+cd
+git clone https://github.com/leelaracc5/forvless.git
+cd forvless
+sudo apt update
+sudo apt install -y nodejs npm git
+npm install
+#nohup node app.js > server.log 2>&1 &
+npm install -g pm2@4.5.6
+
+
+
+
+cat << 'EOF' > check_run.sh
+#!/bin/bash
+
+# PM2 တွင် 'node' ဆိုသော process ရှိမရှိ စစ်ဆေးခြင်း
+if pm2 describe "node" > /dev/null 2>&1; then
+    echo "⚠️ 'node' process ရှိပြီးသား ဖြစ်နေပါသည် (Already running)။ ထို့ကြောင့် ကျော်လိုက်ပါမည်။"
+else
+    echo "🚀 'node' process မတွေ့ရှိရပါ။ app.js ကို စတင် run နေပါပြီ..."
+    pm2 start app.js --name 'node'
+    pm2 save
+    echo "✅ အောင်မြင်စွာ စတင်ပြီး PM2 တွင် သိမ်းဆည်းလိုက်ပါပြီ။"
+fi
+EOF
+
+bash check_run.sh
+
+
+
