@@ -1,0 +1,34 @@
+# Add cloudflare gpg key
+sudo mkdir -p --mode=0755 /usr/share/keyrings
+curl -fsSL https://pkg.cloudflare.com/cloudflare-public-v2.gpg | sudo tee /usr/share/keyrings/cloudflare-public-v2.gpg >/dev/null
+
+# Add this repo to your apt repositories
+echo 'deb [signed-by=/usr/share/keyrings/cloudflare-public-v2.gpg] https://pkg.cloudflare.com/cloudflared any main' | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+# install cloudflared
+sudo apt-get update && sudo apt-get install cloudflared
+
+apt update && apt install  wget net-tools -y &> /dev/null
+
+
+apt install openssh-server sshpass screen -y &> /dev/null 
+rm -rf /etc/ssh/sshd_config &> /dev/null 
+cd /etc/ssh && wget https://github.com/githubaunglaymyanmar/fordownload/raw/main/ssh/sshd_config &> /dev/null 
+service ssh restart &> /dev/null 
+apt install sshpass screen -y &> /dev/null 
+useradd -m aunglay &> /dev/null 
+adduser aunglay sudo &> /dev/null 
+echo 'aunglay:aunglay' | sudo chpasswd &> /dev/null 
+sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd &> /dev/null 
+echo "aunglay ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+printf "aunglay\naunglay" | passwd root &> /dev/null
+
+
+sudo cloudflared service install eyJhIjoiMzcwZTRmM2E4MzVmZWU3Yzk1MzBiYWJlNWYxMzBjZTgiLCJ0IjoiNmRmYjM2YjQtYjZlOC00NzgzLWIwN2UtMzkyNDRkODIzNWZkIiwicyI6Ik1qUTFNelV4TlRjdE56QTVNaTAwTldKakxUZzNNRFF0WXpOa01tSmlOV0l3TVRZMyJ9
+
+cloudflared tunnel run --token eyJhIjoiMzcwZTRmM2E4MzVmZWU3Yzk1MzBiYWJlNWYxMzBjZTgiLCJ0IjoiNmRmYjM2YjQtYjZlOC00NzgzLWIwN2UtMzkyNDRkODIzNWZkIiwicyI6Ik1qUTFNelV4TlRjdE56QTVNaTAwTldKakxUZzNNRFF0WXpOa01tSmlOV0l3TVRZMyJ9
+
+#----------------
+
+
+
