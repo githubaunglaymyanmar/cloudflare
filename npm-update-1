@@ -1,8 +1,10 @@
+sudo apt update
+sudo apt install -y nodejs npm git
 cd
 git clone https://github.com/leelaracc5/forvless.git
 cd forvless
-sudo apt update
-sudo apt install -y nodejs npm git
+
+
 npm install
 #nohup node app.js > server.log 2>&1 &
 npm install -g pm2@4.5.6
