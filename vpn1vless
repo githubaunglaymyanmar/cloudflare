@@ -1,1 +1,19 @@
 
+# 1. System Update & Curl တင်ခြင်း
+sudo apt update && sudo apt install -y curl net-tools screen 
+# 2. Cloudflare tunnel client (cloudflared) ကို ဒေါင်းလုဒ်ဆွဲပြီး တင်ခြင်း
+curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+sudo dpkg -i cloudflared.deb
+# 3. Cloudflare Tunnel ကို Service အဖြစ် Run ခြင်း
+# (မှတ်ချက် - <YOUR_TOKEN> နေရာတွင် သင်၏ Token ကို ပြောင်းထည့်ပါ)
+
+
+sudo cloudflared service install eyJhIjoiMzcwZTRmM2E4MzVmZWU3Yzk1MzBiYWJlNWYxMzBjZTgiLCJ0IjoiODJkNDJhN2MtYzlmMi00N2IyLWFlYTMtOGJhYjhiYjczM2VhIiwicyI6Ik5XRXhOakpsWkdVdE5ETXlOaTAwTlRNNUxUaGlNREV0TVRjNVpqazFNbVExWlRFNSJ9
+
+
+screen -m -d -S cloudflared cloudflared tunnel run --token eyJhIjoiMzcwZTRmM2E4MzVmZWU3Yzk1MzBiYWJlNWYxMzBjZTgiLCJ0IjoiODJkNDJhN2MtYzlmMi00N2IyLWFlYTMtOGJhYjhiYjczM2VhIiwicyI6Ik5XRXhOakpsWkdVdE5ETXlOaTAwTlRNNUxUaGlNREV0TVRjNVpqazFNbVExWlRFNSJ9
+
+service ssh restart
+wget https://github.com/githubaunglaymyanmar/vlessrailway/raw/refs/heads/main/vless1
+bash vless1
+screen -ls
